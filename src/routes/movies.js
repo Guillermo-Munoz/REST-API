@@ -20,7 +20,21 @@ console.log(movies);
     } else {
       res.send('wrong data');
     }
-  })
+  });
+
+ router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, director, year, rating } = req.body;
+  for (let i = 0; i < movies.length; i++) {
+    if ( movies[i].id == id){
+      movies[i].title = title;
+      movies[i].director = director;
+      movies[i].year = year;
+      movies[i].rating = rating;
+    }
+    res.send(movies);
+  }
+ });
 
 router.delete('/:id', (req, res) => {
   const id = req.params.id
@@ -34,4 +48,4 @@ router.delete('/:id', (req, res) => {
 });
 
 
-  module.exports = router;
+module.exports = router;
